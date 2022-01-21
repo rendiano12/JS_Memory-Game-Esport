@@ -1,0 +1,252 @@
+* {
+    font-family: Arial;
+    color: white;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-image: url('./img/background-game.jpg');
+    background-size: cover;
+}
+
+h2.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: black;
+    border: 2px ridge darkblue;
+    max-width: 100%;
+}
+
+.container {
+    display: grid;   
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    background-color: white;
+    width: fit-content;
+    height: fit-content;
+    margin: 50px auto;
+    padding: 15px;
+    border: 2px ridge darkblue;
+}
+
+.papan {
+    height: 120px;
+    width: 120px;
+}
+
+.kartu {
+    cursor: pointer;
+    height: 120px;
+    width: 120px;
+    background-image: url('./img/kartu-belakang.jpg');
+    background-size: cover;
+    transition: 0.2s;
+    transform: rotateY(180deg);
+}
+
+.gambar1 {
+    background-image: url('./img/ae.jpg');
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    transition: 0.2s;
+    transform: rotateY(360deg);
+}
+
+.gambar2 {
+    background-image: url('./img/evos.jpg');
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    transition: 0.2s;
+    transform: rotateY(360deg);
+}
+
+.gambar3 {
+    background-image: url('./img/aura.jpg');
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    transition: 0.2s;
+    transform: rotateY(360deg);
+}
+
+.gambar4 {
+    background-image: url('./img/btr.jpg');
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    transition: 0.2s;
+    transform: rotateY(360deg);
+}
+
+.gambar5 {
+    background-image: url('./img/rrq.jpg');
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    transition: 0.2s;
+    transform: rotateY(360deg);
+}
+
+.gambar6 {
+    background-image: url('./img/onic.jpg');
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    transition: 0.2s;
+    transform: rotateY(360deg);
+}
+
+.restart {
+    width: fit-content;
+    margin: 50px auto;
+}
+
+.tombol-restart {
+    display: block;
+    color: black;
+    margin: auto;
+    font-size: 25pt;
+    padding: 5px;
+    background-color: orange;
+    border: 2px solid gray;
+}
+
+.tombol-restart:active {
+    background-color: darkorange;
+    border: 2px solid rgb(78, 78, 78);
+}
+
+h1.ket {
+    margin: 140px auto 20px auto;
+    text-align: center;
+    font-size: 35pt;
+    color: rgb(137, 199, 43);
+}
+
+/* Layout Page HP Device */
+
+/* HP biasa */
+@media (orientation: portrait) and (min-width: 400px) and (min-height: 561px) {
+    h2.header {
+        font-size: 21pt;
+    }
+
+    div.container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    div.kartu, div.papan, .gambar1, .gambar2,
+    .gambar3, .gambar4, .gambar5,
+    .gambar6 {
+        height: 150px;
+        width: 150px;
+    }
+}
+
+/* xiaomi landscape */
+@media (orientation: landscape) and (min-width: 851px) and (min-height: 393px) {
+    div.container {
+        margin: 40px auto;
+    }
+    
+    div.kartu, div.papan, .gambar1, .gambar2,
+    .gambar3, .gambar4, .gambar5,
+    .gambar6 {
+        height: 120px;
+        width: 120px;
+    }
+}
+
+/* xiaomi portrait */
+@media (orientation: portrait) and (min-width: 393px) and (min-height: 851px) {
+    div.container {
+        margin: 150px auto;
+    }
+}
+
+/* ipad portrait */
+@media (orientation: portrait) and (min-width: 768px) and (min-height: 1024px) {
+    h2.header {
+        font-size: 30pt;
+    }
+
+    div.container {
+        margin: 85px auto;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    div.kartu, div.papan, .gambar1, .gambar2,
+    .gambar3, .gambar4, .gambar5,
+    .gambar6 {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+/* ipad landscape */
+@media (orientation: landscape) and (min-width: 1024px) and (min-height: 768px) {
+    h2.header {
+        font-size: 34pt;
+    }
+
+    div.container {
+        margin: 100px auto;
+    }
+
+    div.kartu, div.papan, .gambar1, .gambar2,
+    .gambar3, .gambar4, .gambar5,
+    .gambar6 {
+        height: 215px;
+        width: 215px;
+    }
+
+    .tombol-restart {
+        font-size: 35pt;
+        width: fit-content;
+        height: fit-content;
+    }
+}
+
+/* ipad pro portrait */
+@media (orientation: portrait) and (min-width: 1024px) and (min-width: 1366px) {
+    h2.header {
+        font-size: 40pt;
+    }
+    
+    div.container {
+        margin: 160px auto;
+        gap: 40px;
+        padding: 25px;
+    }
+    
+    div.kartu, div.papan, .gambar1, .gambar2,
+    .gambar3, .gambar4, .gambar5,
+    .gambar6 {
+        height: 300px;
+        width: 300px;
+    }
+}
+
+/* ipad pro landscape */
+@media (orientation: landscape) and (min-width: 1366px) and (min-width: 1024px) {
+    h2.header {
+        font-size: 45pt;
+    }
+    
+    div.container {
+        margin: 150px auto;
+        gap: 40px;
+        padding: 25px;
+    }
+    
+    div.kartu, div.papan, .gambar1, .gambar2,
+    .gambar3, .gambar4, .gambar5,
+    .gambar6 {
+        height: 300px;
+        width: 300px;
+    }
+}
