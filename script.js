@@ -90,7 +90,7 @@ function refreshPage() {
     container.style.display = 'grid';
     restart.style.display = 'none';
     for (let i = 0; i < kartu.length; i++) {
-        kartu[i].style.opacity = '100%';
+        kartu[i].removeAttribute('style');
         kartu[i].classList.replace(kartu[i].classList.item(0), 'kartu');
         kartu[i].addEventListener('click', bukaKartu);
         papan[i].style.order = acakRandomKartu();
