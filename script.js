@@ -37,7 +37,7 @@ function checkKartu(cKartu) {
 }
 
 function bukaKartu() {
-    const index = this.getAttribute('id');
+    const index = this.dataset.indexNumber;
     arrCheck.push(arrGambar[index]);
     arrCheckIndex.push(index);
 
@@ -77,7 +77,7 @@ function gameSelesai() {
     if (skor >= 100) {
         setTimeout(() => {
             container.style.display = 'none';
-            restart.style.display = 'inherit';
+            restart.removeAttribute('style');
         }, 500);
     }
     restart.addEventListener('click', refreshPage);
@@ -87,7 +87,7 @@ function refreshPage() {
     skor = 0;
     hasilSkor.innerText = skor;
     progress.value = skor;
-    container.style.display = 'grid';
+    container.removeAttribute('style');
     restart.style.display = 'none';
     for (let i = 0; i < kartu.length; i++) {
         kartu[i].removeAttribute('style');
