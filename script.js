@@ -1,40 +1,49 @@
 const kartu = document.querySelectorAll('.kartu');
-const papan = document.querySelectorAll('.papan');
 const hasilSkor = document.querySelector('.skor');
+const rank = document.querySelector('.rank span');
 const wrongAudio = document.querySelector('.wrong');
 const correctAudio = document.querySelector('.correct');
 const warningAudio = document.querySelector('.warning');
 const progress = document.querySelector('progress');
 const container = document.querySelector('.container');
 const restart = document.querySelector('.restart');
+const tmblRestart = document.querySelector('.tombol-restart');
 
 // variable
 let skor = 0;
+let kesalahan = 0;
 
 // array gambar
-const arrGambar = ['gambar1', 'gambar2', 'gambar3', 'gambar4', 'gambar5', 'gambar6',
-    'gambar1', 'gambar2', 'gambar3', 'gambar4', 'gambar5', 'gambar6'];
+const arrGambar = ['ae', 'evos', 'aura', 'btr', 'rrq', 'onic'];
+arrGambar.forEach(valArrGambar => arrGambar.push(valArrGambar));
 
 // mulai
-restart.style.display = 'none';
+function mulaiGame(kartu) {
+    restart.style.display = 'none';
+    kartu.forEach((valBukaKartu, indexBukaKartu) => {
+        valBukaKartu.classList.add(arrGambar[indexBukaKartu]);
+    });
+    setTimeout(function () {
+        kartu.forEach((valTutupKartu, indexTutupKartu) => {
+            valTutupKartu.classList.remove(arrGambar[indexTutupKartu]);
+            valTutupKartu.addEventListener('click', bukaKartu);
+        });
+    }, 1500);
+}
+mulaiGame(kartu);
 
 // acak kartu
 function acakRandomKartu() {
     return Math.floor((Math.random() * kartu.length) + 1);
 }
 
-papan.forEach(aPapan => {
-    aPapan.style.order = acakRandomKartu();
+kartu.forEach(aKartu => {
+    aKartu.style.order = acakRandomKartu();
 });
 
 // check hasil kartu
 let arrCheck = [];
 let arrCheckIndex = [];
-
-kartu.forEach(checkKartu);
-function checkKartu(cKartu) {
-    cKartu.addEventListener('click', bukaKartu);
-}
 
 function bukaKartu() {
     const index = this.dataset.indexNumber;
@@ -60,6 +69,7 @@ function hasilKartu(a1, a2, a3) {
             progress.value = Math.floor(skor);
         } else {
             wrongAudio.play();
+            kesalahan++;
             setTimeout(() => {
                 a1[a2].classList.replace(a1[a2].classList.item(0), 'kartu');
                 a1[a3].classList.replace(a1[a3].classList.item(0), 'kartu');
@@ -74,25 +84,32 @@ function hasilKartu(a1, a2, a3) {
 
 // selesai game
 function gameSelesai() {
+    let grade = '';
     if (skor >= 100) {
-        setTimeout(() => {
+        if (kesalahan <= 2) grade = 'A';
+        else if (kesalahan > 2) grade = 'B';
+        else if (kesalahan >= 6) grade = 'C';
+        else if (kesalahan >= 8) grade = 'D';
+        setTimeout(function () {
             container.style.display = 'none';
+            rank.innerText = grade;
             restart.removeAttribute('style');
         }, 500);
     }
-    restart.addEventListener('click', refreshPage);
+    tmblRestart.addEventListener('click', restartGame);
 }
 
-function refreshPage() {
+function restartGame() {
     skor = 0;
     hasilSkor.innerText = skor;
+    kesalahan = 0;
     progress.value = skor;
     container.removeAttribute('style');
     restart.style.display = 'none';
     for (let i = 0; i < kartu.length; i++) {
         kartu[i].removeAttribute('style');
         kartu[i].classList.replace(kartu[i].classList.item(0), 'kartu');
-        kartu[i].addEventListener('click', bukaKartu);
-        papan[i].style.order = acakRandomKartu();
+        mulaiGame(kartu);
+        kartu[i].style.order = acakRandomKartu();
     }
 }
