@@ -21,11 +21,12 @@ arrGambar.forEach(valArrGambar => arrGambar.push(valArrGambar));
 function mulaiGame(kartu) {
     restart.style.display = 'none';
     kartu.forEach((valBukaKartu, indexBukaKartu) => {
-        valBukaKartu.classList.add(arrGambar[indexBukaKartu]);
+        valBukaKartu.style.order = acakRandomKartu();
+        valBukaKartu.classList.replace('kartu', arrGambar[indexBukaKartu]);
     });
     setTimeout(function () {
         kartu.forEach((valTutupKartu, indexTutupKartu) => {
-            valTutupKartu.classList.remove(arrGambar[indexTutupKartu]);
+            valTutupKartu.classList.replace(arrGambar[indexTutupKartu], 'kartu');
             valTutupKartu.addEventListener('click', bukaKartu);
         });
     }, 1500);
@@ -34,12 +35,8 @@ mulaiGame(kartu);
 
 // acak kartu
 function acakRandomKartu() {
-    return Math.floor((Math.random() * kartu.length) + 1);
+    return Math.round((Math.random() * kartu.length) + 1);
 }
-
-kartu.forEach(aKartu => {
-    aKartu.style.order = acakRandomKartu();
-});
 
 // check hasil kartu
 let arrCheck = [];
@@ -86,10 +83,11 @@ function hasilKartu(a1, a2, a3) {
 function gameSelesai() {
     let grade = '';
     if (skor >= 100) {
-        if (kesalahan <= 2) grade = 'A';
-        else if (kesalahan > 2) grade = 'B';
-        else if (kesalahan >= 6) grade = 'C';
-        else if (kesalahan >= 8) grade = 'D';
+        if (kesalahan == 0) grade = 'Sangat Bagus';
+        else if (kesalahan <= 2) grade = 'Bagus';
+        else if (kesalahan <= 4) grade = 'Normal';
+        else if (kesalahan <= 6) grade = 'Buruk';
+        else grade = 'Sangat Buruk';
         setTimeout(function () {
             container.style.display = 'none';
             rank.innerText = grade;
